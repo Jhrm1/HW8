@@ -16,7 +16,7 @@ Everything the app needs is bundled in `data/desi_dr9_sample.npz` — no network
 
 ## What each tab shows (rubric mapping)
 
-### 1. Montage (3 pts)
+### 1. Montage 
 A 6×10 grid of RGB composites (g→blue, r→green, z→red, asinh stretch) **sorted by
 g−r colour from blue to red**, with tile borders colour-coded the same way. It reveals
 the galaxy colour bimodality — the *blue cloud* of star-forming disks vs the *red
@@ -24,7 +24,7 @@ sequence* of old quiescent ellipticals — plus stars (point-like, white) and re
 survey artifacts: a few tiles contain chance-aligned neighbours, and the brightest
 stars show saturated cores and bleed halos. Sortable by colour, magnitude or type.
 
-### 2. Structure: channels & intensity (3 pts)
+### 2. Structure: channels & intensity 
 - Per-band pixel-intensity distributions over all 60 cutouts (blank-sky peak + object tail)
 - Background noise per band: **g ≈ 0.0019, r ≈ 0.0036, z ≈ 0.0090 nanomaggies/px** —
   the z band is ≈5× noisier than g (a real data-quality finding: z is the shallowest
@@ -32,7 +32,7 @@ stars show saturated cores and bleed halos. Sortable by colour, magnitude or typ
 - Core SNR per band, stars vs galaxies (log scale)
 - Per-object radial intensity profiles in each band (PSF-like vs extended)
 
-### 3. Saliency & feature maps (4 pts)
+### 3. Saliency & feature maps 
 A small CNN (3 conv layers, ~50k params, flip/rotation augmentation) separates stars
 from galaxies: **leave-one-out CV accuracy 55/60 = 92%** (train 100%; the 5 misses are
 compact REX galaxies barely resolved beyond the seeing disc and faint stars).
@@ -51,8 +51,6 @@ Attribution = **gradient × input** w.r.t. the galaxy logit:
 |---|---|
 | `app_desi_browser.py` | the Streamlit app (4 tabs) |
 | `data/desi_dr9_sample.npz` | cutouts + metadata + stats + saliency + feature maps |
-| `prep_data.py` | full reproducible pipeline: object selection from the DR9 tractor catalog, cutout download, CNN training, saliency |
-| `figures/montage.png`, `figures/saliency_examples.png` | static exports of the key figures |
 
 ## Data provenance
 
